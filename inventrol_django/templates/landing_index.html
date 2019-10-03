@@ -3,7 +3,7 @@
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- [if gt IE 8]><! <html lang="en" class="no-js"> <![endif] -->
     <head>
     	<!-- meta character set -->
         <meta charset="utf-8">
@@ -43,7 +43,7 @@
     </head>
 	
     <body id="body">
-		{{request.session.user.email}}
+		<!-- {{request.session.user.email}} -->
 		<!-- preloader -->
 		<div id="preloader">
             <div class="loder-box">
@@ -113,7 +113,7 @@
 						<div class="slide-caption">
                             <div class="caption-content">
                                 <h2 class="animated fadeInDown">INVENTROL</h2>
-                                <span class="animated fadeInDown">Inventory Management made easier.</span>
+                                <span class=s"animated fadeInDown">Inventory Management made easier.</span>
                                 <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="caption-content">
                                 <h2>INVENTROL</h2>
                                 <span>Inventory Management made easier.</span>
-                                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
+                                <a href="#" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
 						
@@ -140,7 +140,7 @@
                             <div class="caption-content">
                                 <h2>INVENTROL</h2>
                                 <span>Inventory Management made easier.</span>
-                                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
+                                <a href="#" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
 
