@@ -3,7 +3,11 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+<<<<<<< HEAD
   scroll-behavior: smooth; 
+=======
+  scroll-behavior: smooth;
+>>>>>>> master
 }
 body {
   margin: 0;
