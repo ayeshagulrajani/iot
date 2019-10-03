@@ -4,10 +4,6 @@ import mysql.connector
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.db import connection
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 #conn=mysql.connector.connect(host="localhost",database='inventory',user="root",password="hakunamatata")
 #cursor=conn.cursor()
 
@@ -46,6 +42,13 @@ def check(request):
             if data["role"] == 0: 
                 return render(request, 'admin_index.html',data)
             elif data["role"]== 1 :
+                cursor.execute("SELECT number from labs where incharge_id={}".format(data["role"]))
+                res=cursor.fetchall()
+                print(res[0][0])
+                cursor.execute("SELECT * from movement where in_lab= {} or out_lab ={} ".format(res[0][0],res[0][0]))
+                res=cursor.fetchall()
+                print(res)
+                data["table"]=res
                 return render(request, 'lab_incharge.html',data)
             else:
                 return render(request, 'user_index.html' ,data)
