@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth import logout
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('user.urls'))
+    path('', include('user.urls')),
+    path('', include('social_django.urls'))
 ]
 
 urlpatterns+=staticfiles_urlpatterns()

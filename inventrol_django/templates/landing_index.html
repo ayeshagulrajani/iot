@@ -22,7 +22,6 @@
 		================================================== -->
 		
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-		
 		<!-- Fontawesome Icon font -->
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 		<!-- bootstrap.min -->
@@ -44,7 +43,7 @@
     </head>
 	
     <body id="body">
-
+		{{request.session.user.email}}
 		<!-- preloader -->
 		<div id="preloader">
             <div class="loder-box">
@@ -82,7 +81,10 @@
 						<li><a href="#about">Problem Statement </a></li>
                         <li><a href="#service">Services</a></li>
                         <li><a href="#testimonials">About Us</a></li>
-						<li><a href="#">LOG IN</a></li>
+						<!-- <li><a href="{% url 'social:begin' 'google-oauth2' %}"> LOG IN </a></li> -->
+						<!-- {% if user.is_authenticated %}
+						<li><a href="log_out">LogOut</a></li>
+						{% endif %} -->
                     </ul>
                 </nav>
 				<!-- /main nav -->
@@ -112,7 +114,7 @@
                             <div class="caption-content">
                                 <h2 class="animated fadeInDown">INVENTROL</h2>
                                 <span class="animated fadeInDown">Inventory Management made easier.</span>
-                                <a href="#" class="btn btn-blue btn-effect">Log In</a>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
 						
@@ -125,7 +127,7 @@
                             <div class="caption-content">
                                 <h2>INVENTROL</h2>
                                 <span>Inventory Management made easier.</span>
-                                <a href="#" class="btn btn-blue btn-effect">Log In</a>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
 						
@@ -138,7 +140,7 @@
                             <div class="caption-content">
                                 <h2>INVENTROL</h2>
                                 <span>Inventory Management made easier.</span>
-                                <a href="#" class="btn btn-blue btn-effect">Log In</a>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-blue btn-effect">Log In</a>
                             </div>
                         </div>
 
