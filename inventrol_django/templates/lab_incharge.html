@@ -1,4 +1,4 @@
-<!-- {% load static from staticfiles %} -->
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard-Lab Incharge</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/local.css" />
-    <link rel="stylesheet" type="text/css" href="js/assistent.js" />
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/local.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'js/assistent.js' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
     <!-- you need to include the shieldui css and js assets in order for the charts to work -->
     <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />

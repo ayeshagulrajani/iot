@@ -39,3 +39,6 @@ def check_log(request):
         cursor.execute("Select * from log")
         res=cursor.fetchall()
         return render(request,'test.html',{"res": res})
+
+def lab_incharge(request):
+    return render(request, "lab_incharge.html")
