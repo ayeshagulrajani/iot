@@ -1,6 +1,6 @@
 {% load static from staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 
 <head>
     <meta charset="utf-8">
@@ -37,10 +37,10 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li><a href="admin_index.html"><i class="fa fa-bullseye"></i> Dashboard</a></li>
-                    <li><a href="admin_index.html#movements"><i class="fa fa-bar-chart-o"></i> Movements</a></li>
-                    <li><a href="admin_index.html#requests"><i class="fa fa-globe"></i> Requests</a></li>
-                    <li><a href="admin_profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                    <li><a href="admin_view"><i class="fa fa-bullseye"></i> Dashboard</a></li>
+                    <li><a href="admin_view#movements"><i class="fa fa-bar-chart-o"></i> Movements</a></li>
+                    <li><a href="admin_view#requests"><i class="fa fa-globe"></i> Requests</a></li>
+                    <li><a href="profile"><i class="fa fa-user"></i> Profile</a></li>
                     <!-- <li><a href="portfolio.html"><i class="fa fa-tasks"></i> Portfolio</a></li>
                     <li><a href="blog.html"><i class="fa fa-globe"></i> Blog</a></li>
                     <li><a href="signup.html"><i class="fa fa-list-ol"></i> SignUp</a></li>
@@ -75,8 +75,7 @@
                         </ul>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve
-                            Miller<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{ name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                             <li class="divider"></li>
@@ -86,7 +85,6 @@
                 </ul>
             </div>
         </nav>
-
         <div>
             <div class="row text-center">
                 <h2>Profile</h2>
@@ -96,7 +94,7 @@
                     Name:
                 </label>
                 <div class="col-md-9" >
-                    <input type="text" style= 'color:black !important;' class="form-control" id="name" placeholder="Enter Name" disabled>
+                    <input type="text" style= 'color:black !important;' class="form-control" id="name" value = "{{name}}" placeholder="Enter Name" disabled>
                 </div>
                 <div class="col-md-1">
                     <button class="btn btn-md custom" onclick="enable1()">Edit <i class="fa fa-edit"></i></button>
@@ -107,7 +105,7 @@
                     Role:
                 </label>
                 <div class="col-md-9">
-                    <input type="text" style= 'color:black !important;' class="form-control" id="role" placeholder="Enter Role" disabled>
+                    <input type="text" style= 'color:black !important;' class="form-control" value = "{{ role }}" id="role" placeholder="Enter Role" disabled>
                 </div>
                 <div class="col-md-1">
                     <i class="fa fa-lock fa-2x"></i>
@@ -118,39 +116,14 @@
                     Email address:
                 </label>
                 <div class="col-md-9">
-                    <input type="email" style= 'color:black !important;' class="form-control" id="emailaddress" placeholder="Enter email address"
+                    <input type="email" style= 'color:black !important;' class="form-control" id="emailaddress" value="{{ email }}" placeholder="Enter email address"
                         disabled>
                     <p class="help-block">
                         Example: yourname@domain.com
                     </p>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-md custom" onclick="enable2()">Edit <i class="fa fa-edit"></i></button>
-                </div>
-            </div>
-            <div>
-                <label for="password" class="col-md-2">
-                    Password:
-                </label>
-                <div class="col-md-9">
-                    <input type="password" style= 'color:black !important;' class="form-control" id="password" placeholder="Enter Password" disabled>
-                    <p class="help-block">
-                        Min: 6 characters (Alphanumeric only)
-                    </p>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-md custom" onclick="enable3()">Edit <i class="fa fa-edit"></i></button>
-                </div>
-            </div>
-            <div>
-                <label for="phone" class="col-md-2">
-                    Phone:
-                </label>
-                <div class="col-md-9">
-                    <input type="tel" class="form-control" style= 'color:black !important;' id="phone" placeholder="1234567890" disabled>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-md custom" onclick="enable4()">Edit <i class="fa fa-edit"></i></button>
+                        <i class="fa fa-lock fa-2x"></i>
                 </div>
             </div>
             <div>
@@ -158,7 +131,7 @@
                     Department:
                 </label>
                 <div class="col-md-9">
-                    <input type="text" style= 'color:black !important;' class="form-control" id="department" placeholder="Enter Department" disabled>
+                    <input type="text" style= 'color:black !important;' class="form-control" id="department" value="{{ dept }}" placeholder="Enter Department" disabled>
                 </div>
                 <div class="col-md-1">
                     <i class="fa fa-lock fa-2x"></i>
@@ -169,7 +142,7 @@
                     Address:
                 </label>
                 <div class="col-md-9">
-                    <input type="text" style= 'color:black !important;' class="form-control" id="address" placeholder="Enter Address" disabled>
+                    <input type="text" style= 'color:black !important;' class="form-control" value = "{{ address }}" id="address" placeholder="Enter Address" disabled>
                 </div>
                 <div class="col-md-1">
                     <button class="btn btn-md custom" onclick="enable5()">Edit <i class="fa fa-edit"></i></button>
@@ -179,7 +152,7 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-10 center">
-                    <button type="submit" class="btn btn-info" id="save" onclick="save()">
+                    <button type="submit" class="btn btn-info" onclick="save()" name="mybtn" id="save" >
                         Save Changes
                     </button>
                 </div>

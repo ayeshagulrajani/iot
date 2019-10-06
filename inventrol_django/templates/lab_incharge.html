@@ -1,6 +1,6 @@
 {% load static from staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,11 +61,11 @@
                         </ul>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="profile"><i class="fa fa-user"></i> Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                            <li><a href="log_out"><i class="fa fa-power-off"></i> Log Out</a></li>
 
                         </ul>
                     </li>
@@ -207,7 +207,28 @@
                             <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Components Moved in Your Lab  </h3>
                         </div>
                         <div class="panel-body">
-                            <div id="shieldui-grid1"></div>
+                            <div id="shieldui-grid1">
+                                <table class="table table-sm table-dark">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Movement Id</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">In Lab</th>
+                                        <th scope="col">Out Lab</th>
+                                        <th scope="col">User Id</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in table %}
+                                      <tr>
+                                        {% for r in row %}
+                                            <td>{{r}}</td>
+                                        {% endfor %}
+                                      </tr>
+                                      {% endfor%}
+                                    </tbody>
+                                  </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,7 +240,26 @@
                             <h3 class="panel-title"> Maintaince Requests </h3>
                         </div>
                         <div class="panel-body">
-                            <div id="shieldui-grid2"></div>
+                            <table class="table table-sm table-dark">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Movement Id</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">In Lab</th>
+                                        <th scope="col">Out Lab</th>
+                                        <th scope="col">User Id</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in table %}
+                                      <tr>
+                                        {% for r in row %}
+                                            <td>{{r}}</td>
+                                        {% endfor %}
+                                      </tr>
+                                      {% endfor %}
+                                    </tbody>
+                                  </table>
                             <button type="button" style= 'float: right; margin-right: 10px; background-color: #337ab7;margin-top: 5px;' class="btn btn-sm">Add Request</button>
                         </div>
                     </div>
@@ -297,40 +337,7 @@
                     data: visits
                 }]
             });
-
-            $("#shieldui-grid1").shieldGrid({
-                dataSource: {
-                    data: traffic
-                },
-                // sorting: {
-                //     multiple: true
-                // },
-                rowHover: false,
-                paging: false,
-                columns: [
-                { field: "Source", width: "170px", title: "Component Name" },
-                { field: "Amount", title: "Source" },                
-                { field: "Percent", title: "Destination", format: "{0} %" },
-                { field: "Target", title: "Moved By" },
-                ]
-            });
-            $("#shieldui-grid2").shieldGrid({
-                dataSource: {
-                    data: traffic1
-                },
-                // sorting: {
-                //     multiple: true
-                // },
-                rowHover: false,
-                paging: false,
-                columns: [
-                { field: "Source", width: "170px", title: "Request" },
-                // { field: "Amount", title: "Placed By" },                
-                { field: "Percent", title: "Description", format: "{0} %" },
-                { field: "Target", title: "Status" },
-                ]
-            });            
-        });        
+        });
     </script>
 </body>
 </html>

@@ -1,13 +1,15 @@
 {% load static from staticfiles %}
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="en" style="scroll-behavior: smooth;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard-Admin</title>
+    <title>Dashboard-Clerk</title>
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/local.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'js/assistent.js' %}" />
     <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
@@ -28,15 +30,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#start">Admin Panel</a>
+                <a class="navbar-brand" href="#start">Inventrol</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
                     <li class="selected"><a href="#start"><i class="fa fa-bullseye"></i> Dashboard</a></li>
-                    <li><a href="#movements"><i class="fa fa-bar-chart-o"></i> Movements</a></li>
-                    <li><a href="#requests"><i class="fa fa-globe"></i> Requests</a></li>
-                    <li><a href="profile"><i class="fa fa-user"></i> Profile</a></li>
-                    
+                    <li><a href="#movements"><i class="fa fa-bar-chart-o"></i>All Your Movements</a></li>
+                    <li><a href="movements"><i class="fa fa-user"></i> Create a Movement</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -61,7 +61,7 @@
                         </ul>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ name }}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="profile"><i class="fa fa-user"></i> Profile</a></li>
                             <li class="divider"></li>
@@ -82,13 +82,12 @@
         <div id="page-wrapper">
             <div class="row" id='start'> 
                 <div class="col-lg-12">
-                    <h1>Dashboard <small>Statistics and more</small></h1>
+                    <h1>Dashboard-Clerk</h1>
                     <div class="alert alert-dismissable alert-warning">
                         <button data-dismiss="alert" class="close" type="button">&times;</button>
-                        Welcome to the admin dashboard! Feel free to review all pages and modify the layout to your needs. 
+                        Welcome to your dashboard! Here, you'll find everything you need for your Inventory Management. 
                         <br />
-                        This theme uses the <a href="https://www.shieldui.com">ShieldUI</a> JavaScript library for the 
-                        additional data visualization and presentation functionality illustrated here.
+                        This is a part of our <b>IoT Mini Project</b> for the academic year 2019-2020.
                     </div>
                 </div>
             </div>
@@ -96,7 +95,7 @@
                 <div class="col-md-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Visits Based on a 10 days data</h3>
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Movement in your lab</h3>
                         </div>
                         <div class="panel-body">
                             <div id="shieldui-chart1"></div>
@@ -205,46 +204,72 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary" >
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Movements </h3>
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i>All Your Movements</h3>
                         </div>
                         <div class="panel-body">
+                            <div id="shieldui-grid1">
                                 <table class="table table-sm table-dark">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">Movement Id</th>
-                                            <th scope="col">Product Name</th>
-                                            <th scope="col">In Lab</th>
-                                            <th scope="col">Out Lab</th>
-                                            <th scope="col">User Id</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for row in table %}
-                                          <tr>
-                                            {% for r in row %}
-                                                <td>{{r}}</td>
-                                            {% endfor %}
-                                          </tr>
-                                          {% endfor %}
-                                        </tbody>
-                                      </table>
-                            
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Movement Id</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">In Lab</th>
+                                        <th scope="col">Out Lab</th>
+                                        <!-- <th scope="col">User Id</th> -->
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if table_len == 0 %}
+                                            <p class="text-danger">No Records Found</p>
+                                        {% else %}
+                                        {% for row in table %}
+                                      <tr>
+                                        {% for r in row %}
+                                            <td>{{r}}</td>
+                                        {% endfor %}
+                                      </tr>
+                                      {% endfor%}
+                                    </tbody>
+                                    {% endif %}
+                                  </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="requests">
+            <!-- <div class="row" id="requests">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title"> Requests </h3>
+                            <h3 class="panel-title"> Maintaince Requests </h3>
                         </div>
                         <div class="panel-body">
                             <div id="shieldui-grid2"></div>
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Request</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Last Serviced On</th>
+                                    <th scope="col">Out Lab</th>
+                                    <th scope="col">User Id</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in table %}
+                                  <tr>
+                                    {% for r in row %}
+                                        <td>{{r}}</td>
+                                    {% endfor %}
+                                  </tr>
+                                  {% endfor%}
+                                </tbody>
+                            </table>
+                            <button type="button" style= 'float: right; margin-right: 10px; background-color: #337ab7;margin-top: 5px;' class="btn btn-sm">Add Request</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- /#wrapper -->
@@ -271,19 +296,19 @@
                 }];
                 traffic1 = [
                 {
-                    Source: "Direct", Amount: 323, Change: 53, Percent: 23, Target: '<button class="btn btn-xs" id="approve">Accept <i class="fa fa-check-circle"></i></button> <button class="btn btn-xs" id="decline">Decline <i class="fa fa-times-circle"></i></button>'
+                    Source: "Direct", Amount: 323, Change: 53, Percent: 23, Target: 'Accepted'
                 },
                 {
-                    Source: "Refer", Amount: 345, Change: 34, Percent: 45, Target: '<button class="btn btn-xs" id="approve">Accept <i class="fa fa-check-circle"></i></button> <button class="btn btn-xs" id="decline">Decline <i class="fa fa-times-circle"></i></button>'
+                    Source: "Refer", Amount: 345, Change: 34, Percent: 45, Target: 'Declined'
                 },
                 {
-                    Source: "Social", Amount: 567, Change: 67, Percent: 23, Target: '<button class="btn btn-xs" id="approve">Accept <i class="fa fa-check-circle"></i></button> <button class="btn btn-xs" id="decline">Decline <i class="fa fa-times-circle"></i></button>'
+                    Source: "Social", Amount: 567, Change: 67, Percent: 23, Target: 'Pending'
                 },
                 {
-                    Source: "Search", Amount: 234, Change: 23, Percent: 56, Target: '<button class="btn btn-xs" id="approve">Accept <i class="fa fa-check-circle"></i></button> <button class="btn btn-xs" id="decline">Decline <i class="fa fa-times-circle"></i></button>'
+                    Source: "Search", Amount: 234, Change: 23, Percent: 56, Target: 'Pending'
                 },
                 {
-                    Source: "Internal", Amount: 111, Change: 78, Percent: 12, Target: '<button class="btn btn-xs" id="approve">Accept <i class="fa fa-check-circle"></i></button> <button class="btn btn-xs" id="decline">Decline <i class="fa fa-times-circle"></i></button>'
+                    Source: "Internal", Amount: 111, Change: 78, Percent: 12, Target: 'Accepted'
                 }];
             $("#shieldui-chart1").shieldChart({
                 theme: "dark",
@@ -317,24 +342,7 @@
                     data: visits
                 }]
             });
-
-            $("#shieldui-grid2").shieldGrid({
-                dataSource: {
-                    data: traffic1
-                },
-                // sorting: {
-                //     multiple: true
-                // },
-                rowHover: false,
-                paging: false,
-                columns: [
-                { field: "Source", width: "170px", title: "Request" },
-                { field: "Amount", title: "Placed By" },                
-                { field: "Percent", title: "Description", format: "{0} %" },
-                { field: "Target", title: " " },
-                ]
-            });            
-        });        
+        });
     </script>
 </body>
 </html>
