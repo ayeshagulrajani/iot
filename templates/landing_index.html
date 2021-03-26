@@ -1,4 +1,4 @@
-{% load static from staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -45,11 +45,7 @@
     <body id="body">
 		<!-- {{request.session.user.email}} -->
 		<!-- preloader -->
-		<div id="preloader">
-            <div class="loder-box">
-            	<div class="battery"></div>
-            </div>
-		</div>
+		
 		<!-- end preloader -->
 
         <!--
@@ -551,10 +547,10 @@
 							<p>Enter your email</p>
 							<p>Get in touch with us!</p>
 						</div>
-						<form action="#" method="post" class="subscribe-form wow animated fadeInUp">
+						<form action="#" method="" class="subscribe-form wow animated fadeInUp">
 							<div class="input-field">
-								<input type="email" class="subscribe form-control" placeholder="Enter Your Email...">
-								<button type="submit" class="submit-icon">
+								<input type="email" class="subscribe form-control" placeholder="Enter Your Email..." id = "email_input">
+								<button type="submit" class="submit-icon" id="email_submit">
 									<i class="fa fa-paper-plane fa-lg"></i>
 								</button>
 							</div>
